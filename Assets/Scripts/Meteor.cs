@@ -5,7 +5,6 @@ public class Meteor : MonoBehaviour
 
     [SerializeField] private float rotateSpeed = 100f;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +14,6 @@ public class Meteor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+        transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
     }
 }
