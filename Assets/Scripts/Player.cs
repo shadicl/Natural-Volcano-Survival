@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
+    public float health = 100f;
+
     private bool isGrounded;
 
     private Rigidbody2D rb;
