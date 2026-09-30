@@ -5,14 +5,9 @@ public class Meteor : MonoBehaviour
 {
 
     [SerializeField] private float rotateSpeed = 100f;
+    private GameObject healthFill;
 
     public float damageAmount = 20f;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -26,8 +21,12 @@ public class Meteor : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.health = Mathf.Clamp(player.health - damageAmount, 0f, 100f);
-            Destroy(gameObject, 0.0f);
+
+            if (player != null)
+            {
+                player.TakeDamage(damageAmount);
+                Destroy(gameObject, 0.0f);
+            }
         }
         else if (collision.gameObject.CompareTag("Floor"))
         {

@@ -11,7 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask groundLayer;
 
-    public float health = 100f;
+    [SerializeField] private float maxHealth = 100f;
+    private float health;
+
+    [SerializeField] private HealthBar healthBar;
 
     private bool isGrounded;
 
@@ -29,6 +32,8 @@ public class Player : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+        health = maxHealth;
+        healthBar.UpdateHealth(health, maxHealth);
     }
 
     void Update()
@@ -58,5 +63,12 @@ public class Player : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        healthBar.UpdateHealth(health, maxHealth);
     }
 }
