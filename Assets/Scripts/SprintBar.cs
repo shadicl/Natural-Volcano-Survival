@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class SprintBar : MonoBehaviour
 {
-    private Image image;
+    public Image image;
 
     private void Start()
     {

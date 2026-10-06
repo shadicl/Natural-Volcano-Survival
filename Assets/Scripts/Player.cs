@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -81,6 +82,18 @@ public class Player : MonoBehaviour
         {
             Sprint();
             timer = 0f;
+
+            if (sprintBar.image.fillAmount <= 0)
+            {
+                Unsprint();
+                timer += Time.deltaTime;
+
+                if (timer >= regenDelay)
+                {
+                    stamina += staminaRegenAmount * Time.deltaTime;
+                    sprintBar.UpdateSprint(stamina, maxStamina);
+                }
+            }
         }
         else
         {

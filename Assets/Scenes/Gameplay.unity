@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 201347151}
   m_Layer: 0
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2624,6 +2624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meteorPrefab: {fileID: 1384525295984016161, guid: dc0d3a0366ee2004fb26da92155d7960, type: 3}
   floor: {fileID: 221310598}
+  spawnRate: 0.1
 --- !u!1 &1902038393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,6 +2847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3109abe0e7cb6a4b8455f87538c75c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
 --- !u!1 &1966399923
 GameObject:
   m_ObjectHideFlags: 0

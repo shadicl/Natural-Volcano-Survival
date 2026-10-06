@@ -8,6 +8,8 @@ public class MeteorSpawner : MonoBehaviour
     [SerializeField] private GameObject meteorPrefab;
     [SerializeField] private GameObject floor;
 
+    [SerializeField] private float spawnRate = 0.25f;
+
     private float startX;
     private float endX;
 
@@ -47,7 +49,7 @@ public class MeteorSpawner : MonoBehaviour
     {
         isDelaying = true;
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(spawnRate);
 
         isDelaying = false;
     }
