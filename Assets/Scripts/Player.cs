@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float staminaDrain = 100f;
     [SerializeField] private float sprintMultiplier = 2f;
     private float sprintSpeed;
-    private bool sprinting = false;
 
     public float regenDelay = 2f;
     public float staminaRegenAmount = 0.5f;
