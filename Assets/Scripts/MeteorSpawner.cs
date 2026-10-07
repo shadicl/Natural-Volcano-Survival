@@ -8,7 +8,7 @@ public class MeteorSpawner : MonoBehaviour
     [SerializeField] private GameObject meteorPrefab;
     [SerializeField] private GameObject floor;
 
-    [SerializeField] private float spawnRate = 0.25f;
+    public float spawnRate = 0.25f;
 
     private float startX;
     private float endX;

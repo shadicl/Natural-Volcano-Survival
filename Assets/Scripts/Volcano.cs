@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Volcano : MonoBehaviour
 {
@@ -9,18 +11,28 @@ public class Volcano : MonoBehaviour
     public GameObject playerSpawn;
 
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private MeteorSpawner meteorSpawner;
 
     private void Start()
     {
         health = maxHealth;
-        healthBar.UpdateHealth(health, maxHealth);
+        UpdateStatus();
     }
 
     public void TakeDamage(float damage)
     {
         health = Mathf.Clamp(health - damage, 0, maxHealth);
-        healthBar.UpdateHealth(health, maxHealth);
+        UpdateStatus();
 
         print("Volcano health: " + health);
+    }
+
+    private void UpdateStatus()
+    {
+
+        Image bar = healthBar.image;
+
+        healthBar.UpdateHealth(health, maxHealth);
+        meteorSpawner.spawnRate -= 0.05f;
     }
 }

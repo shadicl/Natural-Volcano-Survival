@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
 
-    private Image image;
+    public Image image;
 
     private void Awake()
     {

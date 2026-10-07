@@ -1690,6 +1690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9bbea3db13d40e4e9650a329ab133d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
 --- !u!1 &1165617677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,6 +1741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9bbea3db13d40e4e9650a329ab133d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
 --- !u!114 &1165617680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2522,6 +2524,7 @@ MonoBehaviour:
   hitbox: {fileID: 201347147}
   playerSpawn: {fileID: 1420710478}
   healthBar: {fileID: 1165617679}
+  meteorSpawner: {fileID: 1874914916}
 --- !u!1 &1874914912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,7 +2627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meteorPrefab: {fileID: 1384525295984016161, guid: dc0d3a0366ee2004fb26da92155d7960, type: 3}
   floor: {fileID: 221310598}
-  spawnRate: 0.1
+  spawnRate: 0.3
 --- !u!1 &1902038393
 GameObject:
   m_ObjectHideFlags: 0
