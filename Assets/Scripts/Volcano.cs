@@ -12,6 +12,7 @@ public class Volcano : MonoBehaviour
 
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private MeteorSpawner meteorSpawner;
+    [SerializeField] private VictoryUI victoryUI;
 
     private void Start()
     {
@@ -34,5 +35,10 @@ public class Volcano : MonoBehaviour
 
         healthBar.UpdateHealth(health, maxHealth);
         meteorSpawner.spawnRate -= 0.05f;
+
+        if (health <= 0)
+        {
+            victoryUI.Enable();
+        }
     }
 }
