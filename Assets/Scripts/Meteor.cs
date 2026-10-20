@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Meteor : MonoBehaviour
@@ -8,6 +9,13 @@ public class Meteor : MonoBehaviour
     private GameObject healthFill;
 
     public float damageAmount = 20f;
+
+    private SFXManager sfxManager;
+
+    private void Start()
+    {
+        sfxManager = FindFirstObjectByType<SFXManager>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,6 +33,7 @@ public class Meteor : MonoBehaviour
             if (player != null)
             {
                 player.TakeDamage(damageAmount);
+                sfxManager.PlayMeteorHit();
                 Destroy(gameObject, 0.0f);
             }
         }
