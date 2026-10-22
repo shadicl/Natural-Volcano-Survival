@@ -13,25 +13,23 @@ public class SFXManager : MonoBehaviour
         meteorHit.Play();
    }
 
-    public void PlayWalkSFX(float duration)
+    public void PlayWalkSFX()
     {
 
         if (!walkSFX.isPlaying)
         {
             runSFX.Stop();
             walkSFX.Play();
-            StartCoroutine(Delay(duration));
         }
     }
 
-    public void PlayRunSFX(float duration)
+    public void PlayRunSFX()
     {
 
         if (!runSFX.isPlaying)
         {
             walkSFX.Stop();
             runSFX.Play();
-            StartCoroutine(Delay(duration));
         }
     }
 
@@ -44,10 +42,5 @@ public class SFXManager : MonoBehaviour
     {
         walkSFX.Stop();
         runSFX.Stop();
-    }
-
-    private IEnumerator Delay(float duration)
-    {
-        yield return new WaitForSeconds(duration);
     }
 }

@@ -2588,10 +2588,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4c4bbdf1a656b7e40a89b3986e3c16bf, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2703,7 +2703,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 7db546a95262c0c4d86da432f962b068, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3827,10 +3827,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c4e6ee6481a81514f9d1a078220d940d, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4744,8 +4744,6 @@ MonoBehaviour:
   healthBar: {fileID: 845977941}
   sprintBar: {fileID: 1910336101}
   sfxManager: {fileID: 1464465609}
-  walkDuration: 0.45
-  runDuration: 0.35
 --- !u!50 &1998737387
 Rigidbody2D:
   serializedVersion: 5

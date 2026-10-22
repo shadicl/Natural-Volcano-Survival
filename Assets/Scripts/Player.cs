@@ -33,9 +33,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private SFXManager sfxManager;
 
-    [SerializeField] private float walkDuration = 0.35f;
-    [SerializeField] private float runDuration = 0.25f;
-
     private bool isGrounded;
 
     private Rigidbody2D rb;
@@ -66,41 +63,36 @@ public class Player : MonoBehaviour
         moveAmount = horizontal * moveSpeed * Time.deltaTime;
         transform.position += new Vector3(moveAmount, 0f, 0f);
 
+        // Ground check
         isGrounded = Physics2D.OverlapCircle(
             groundCheck.position,
             groundCheckRadius,
             groundLayer);
 
+        // Movement
         if (Input.GetKey(KeyCode.A))
         {
             horizontal = -1f;
-            sfxManager.PlayWalkSFX(walkDuration);
-            print("Playing SFX");
         }
         else if (Input.GetKey(KeyCode.D))
         {
             horizontal = 1f;
-            sfxManager.PlayWalkSFX(walkDuration);
         }
         else
         {
             horizontal = 0f;
-            sfxManager.StopWalkSFX();
         }
 
+        // Sprint
         if (Input.GetKey(KeyCode.LeftShift))
         {
             Sprint();
             timer = 0f;
 
-            sfxManager.PlayRunSFX(walkDuration);
-
             if (sprintBar.image.fillAmount <= 0)
             {
                 Unsprint();
                 timer += Time.deltaTime;
-
-                sfxManager.StopWalkRunSFXs();
 
                 if (timer >= regenDelay)
                 {
@@ -114,8 +106,6 @@ public class Player : MonoBehaviour
             Unsprint();
             timer += Time.deltaTime;
 
-            sfxManager.StopWalkRunSFXs();
-
             if (timer >= regenDelay)
             {
                 stamina += staminaRegenAmount * Time.deltaTime;
@@ -123,12 +113,31 @@ public class Player : MonoBehaviour
             }
         }
 
+        // Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
+        // Stamina
         stamina = Mathf.Clamp(stamina, 0f, maxStamina);
+
+        // Walk/Run SFX
+        bool isMoving = horizontal != 0f;
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && sprintBar.image.fillAmount > 0f;
+
+        if (!isMoving || !isGrounded)
+        {
+            sfxManager.StopWalkRunSFXs();
+        }
+        else if (isSprinting)
+        {
+            sfxManager.PlayRunSFX();
+        }
+        else
+        {
+            sfxManager.PlayWalkSFX();
+        }
     }
 
     public void TakeDamage(float damage)
