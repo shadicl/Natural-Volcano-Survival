@@ -31,6 +31,11 @@ public class Player : MonoBehaviour
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private SprintBar sprintBar;
 
+    [SerializeField] private SFXManager sfxManager;
+
+    [SerializeField] private float walkDuration = 0.35f;
+    [SerializeField] private float runDuration = 0.25f;
+
     private bool isGrounded;
 
     private Rigidbody2D rb;
@@ -52,6 +57,8 @@ public class Player : MonoBehaviour
         sprintSpeed = moveSpeed * sprintMultiplier;
         originalSpeed = moveSpeed;
         healthBar.UpdateHealth(health, maxHealth);
+
+        sfxManager = FindFirstObjectByType<SFXManager>();
     }
 
     void Update()
@@ -67,14 +74,18 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             horizontal = -1f;
+            sfxManager.PlayWalkSFX(walkDuration);
+            print("Playing SFX");
         }
         else if (Input.GetKey(KeyCode.D))
         {
             horizontal = 1f;
+            sfxManager.PlayWalkSFX(walkDuration);
         }
         else
         {
             horizontal = 0f;
+            sfxManager.StopWalkSFX();
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -82,10 +93,14 @@ public class Player : MonoBehaviour
             Sprint();
             timer = 0f;
 
+            sfxManager.PlayRunSFX(walkDuration);
+
             if (sprintBar.image.fillAmount <= 0)
             {
                 Unsprint();
                 timer += Time.deltaTime;
+
+                sfxManager.StopWalkRunSFXs();
 
                 if (timer >= regenDelay)
                 {
@@ -98,6 +113,8 @@ public class Player : MonoBehaviour
         {
             Unsprint();
             timer += Time.deltaTime;
+
+            sfxManager.StopWalkRunSFXs();
 
             if (timer >= regenDelay)
             {
