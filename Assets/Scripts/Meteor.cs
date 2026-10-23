@@ -6,7 +6,6 @@ public class Meteor : MonoBehaviour
 {
 
     [SerializeField] private float rotateSpeed = 100f;
-    private GameObject healthFill;
 
     public float damageAmount = 20f;
 
