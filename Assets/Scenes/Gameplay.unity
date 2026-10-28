@@ -720,6 +720,7 @@ MonoBehaviour:
   - {fileID: 2601337903432498301, guid: 88c5e51ee14766d46aec09ba4aa41cb9, type: 3}
   - {fileID: 6131526921604112622, guid: 2b2b8234bbd4e8a498eb832deae671ec, type: 3}
   - {fileID: 6131526921604112622, guid: d6fd19e541829a545873445d999c3296, type: 3}
+  - {fileID: 8866994815538075905, guid: d7bee67b552efeb449ce3f35c35a6278, type: 3}
   floor: {fileID: 221310600}
   obstacleCount: 25
   minDistance: 20
