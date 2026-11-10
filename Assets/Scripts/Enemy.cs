@@ -27,6 +27,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (player == null) return;
+
         float distance = Vector2.Distance(transform.position, player.position);
 
         isAggro = distance <= aggroRange;
@@ -36,9 +39,19 @@ public class Enemy : MonoBehaviour
     {
         if (isAggro)
         {
-            Vector2 direction = ((Vector2)player.position - rb.position).normalized;
+            float directionX = Mathf.Sign(player.position.x - rb.position.x);
 
-            rb.MovePosition(rb.position + direction * aggroSpeed * Time.fixedDeltaTime);
+            Vector2 velocity = rb.linearVelocity;
+            velocity.x = directionX * aggroSpeed;
+
+            rb.linearVelocity = velocity;
+        }
+        else
+        {
+            Vector2 velocity = rb.linearVelocity;
+            velocity.x = 0f;
+
+            rb.linearVelocity = velocity;
         }
     }
 
