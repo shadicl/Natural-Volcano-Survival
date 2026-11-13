@@ -6,11 +6,17 @@ public class Parry : MonoBehaviour
 
     [SerializeField] private Player player;
     [SerializeField] private float parryDuration = 3f;
+    [SerializeField] private float parryCooldown = 5f;
 
     [SerializeField] private float flashDuration = 0.5f;
 
+    [SerializeField] private AudioSource parryInitiate;
+    [SerializeField] private AudioSource parrySuccess;
+
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
+
+    private Coroutine parryCoroutine;
 
     private void Awake()
     {
@@ -18,20 +24,26 @@ public class Parry : MonoBehaviour
         originalColor = spriteRenderer.color;
     }
 
-    public void Flash()
+    public void TryParry()
     {
-        StartCoroutine(FlashCoroutine());
+
+        if (!player.canParry)
+        {
+            return;
+        }
+
+        parryInitiate.Play();
+        parryCoroutine = StartCoroutine(ParryCoroutine());
     }
 
-    private IEnumerator Delay()
+    public void Flash(Color color)
     {
-        yield return new WaitForSeconds(parryDuration);
-        player.parrying = false;
+        StartCoroutine(FlashCoroutine(color));
     }
 
-    private IEnumerator FlashCoroutine()
+    private IEnumerator FlashCoroutine(Color c)
     {
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = c;
 
         float elaspedTime = 0f;
 
@@ -47,5 +59,42 @@ public class Parry : MonoBehaviour
         }
 
         spriteRenderer.color = originalColor;
+    }
+
+    private IEnumerator ParryCoroutine()
+    {
+        player.canParry = false;
+        player.isParrying = true;
+
+        yield return new WaitForSeconds(parryDuration);
+
+        player.isParrying = false;
+
+        yield return new WaitForSeconds(parryCooldown);
+
+        player.canParry = true;
+        parryCoroutine = null;
+    }
+
+    public void SuccessfulParry()
+    {
+
+        if (!player.isParrying)
+        {
+            return;
+        }
+
+        if (parryCoroutine != null)
+        {
+            StopCoroutine(parryCoroutine);
+            parryCoroutine = null;
+        }
+
+        parrySuccess.Play();
+
+        player.isParrying = false;
+        player.canParry = true;
+
+        print("Successful parry!");
     }
 }

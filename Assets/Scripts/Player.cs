@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +34,9 @@ public class Player : MonoBehaviour
     [SerializeField] private SFXManager sfxManager;
 
     [SerializeField] private Parry parryScript;
-    public bool parrying = false;
+    public bool isParrying = false;
+    public bool canParry = true;
+    public float flashDuration = 1f;
 
     private bool isGrounded;
 
@@ -143,9 +146,11 @@ public class Player : MonoBehaviour
 
         // Parrying
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isParrying == false && canParry == true)
         {
-            parryScript.Flash();
+            parryScript.TryParry();
+            parryScript.Flash(Color.white);
+
         }
     }
 
@@ -154,6 +159,27 @@ public class Player : MonoBehaviour
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
         healthBar.UpdateHealth(health, maxHealth);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (!isParrying)
+        {
+            print("Object is not parrying");
+            return;
+        }
+
+        GameObject theObject = collision.gameObject;
+
+        if (!theObject.GetComponent<Meteor>() && !theObject.GetComponent<Enemy>())
+        {
+            print("Object is not a meteor or enemy");
+            return;
+        }
+
+        parryScript.SuccessfulParry();
+        Destroy(theObject);
     }
 
     void Sprint()

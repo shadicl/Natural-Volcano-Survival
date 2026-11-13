@@ -29,7 +29,7 @@ public class Meteor : MonoBehaviour
         {
             Player player = collision.gameObject.GetComponent<Player>();
 
-            if (player != null)
+            if (player != null && !player.isParrying)
             {
                 player.TakeDamage(damageAmount);
                 sfxManager.PlayMeteorHit();
