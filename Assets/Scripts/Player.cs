@@ -27,11 +27,13 @@ public class Player : MonoBehaviour
 
     private float timer = 0f;
 
-
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private SprintBar sprintBar;
 
     [SerializeField] private SFXManager sfxManager;
+
+    [SerializeField] private Parry parryScript;
+    public bool parrying = false;
 
     private bool isGrounded;
 
@@ -137,6 +139,13 @@ public class Player : MonoBehaviour
         else
         {
             sfxManager.PlayWalkSFX();
+        }
+
+        // Parrying
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            parryScript.Flash();
         }
     }
 

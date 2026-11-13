@@ -4691,6 +4691,7 @@ GameObject:
   - component: {fileID: 1998737387}
   - component: {fileID: 1998737386}
   - component: {fileID: 1998737388}
+  - component: {fileID: 1998737389}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4743,7 +4744,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.07228935, g: 0.5660378, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4798,6 +4799,8 @@ MonoBehaviour:
   healthBar: {fileID: 845977941}
   sprintBar: {fileID: 1910336101}
   sfxManager: {fileID: 1464465609}
+  parryScript: {fileID: 1998737389}
+  parrying: 0
 --- !u!50 &1998737387
 Rigidbody2D:
   serializedVersion: 5
@@ -4871,6 +4874,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1998737389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998737383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06944e66abb11ec4d9f0e0788dda0b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  parryDuration: 3
+  flashDuration: 0.5
 --- !u!1 &2108397583
 GameObject:
   m_ObjectHideFlags: 0
