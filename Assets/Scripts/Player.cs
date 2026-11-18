@@ -121,6 +121,7 @@ public class Player : MonoBehaviour
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            sfxManager.PlayJumpSFX();
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 

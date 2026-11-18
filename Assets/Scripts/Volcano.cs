@@ -14,6 +14,9 @@ public class Volcano : MonoBehaviour
     [SerializeField] private MeteorSpawner meteorSpawner;
     [SerializeField] private VictoryUI victoryUI;
 
+    [SerializeField] private SFXManager sfxManager;
+    [SerializeField] private AudioSource music;
+
     private void Start()
     {
         health = maxHealth;
@@ -38,6 +41,8 @@ public class Volcano : MonoBehaviour
 
         if (health <= 0)
         {
+            music.Stop();
+            sfxManager.PlayVictorySFX();
             victoryUI.Enable();
         }
     }

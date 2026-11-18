@@ -7,6 +7,8 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private AudioSource meteorHit;
     [SerializeField] private AudioSource walkSFX;
     [SerializeField] private AudioSource runSFX;
+    [SerializeField] private AudioSource jumpSFX;
+    [SerializeField] private AudioSource victorySFX;
 
    public void PlayMeteorHit()
    {
@@ -42,5 +44,15 @@ public class SFXManager : MonoBehaviour
     {
         walkSFX.Stop();
         runSFX.Stop();
+    }
+
+    public void PlayJumpSFX()
+    {
+        jumpSFX.Play();
+    }
+
+    public void PlayVictorySFX()
+    {
+        victorySFX.Play();
     }
 }
