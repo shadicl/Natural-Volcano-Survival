@@ -9,6 +9,7 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private AudioSource runSFX;
     [SerializeField] private AudioSource jumpSFX;
     [SerializeField] private AudioSource victorySFX;
+    [SerializeField] private AudioSource volcanoSelectSFX;
 
    public void PlayMeteorHit()
    {
@@ -54,5 +55,10 @@ public class SFXManager : MonoBehaviour
     public void PlayVictorySFX()
     {
         victorySFX.Play();
+    }
+
+    public void PlayVolcanoSelectSFX()
+    {
+        volcanoSelectSFX.Play();
     }
 }
